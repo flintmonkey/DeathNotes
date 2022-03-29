@@ -317,11 +317,13 @@ namespace Oxide.Plugins
 
             if (_combatEntityTypes.Contents != null)
             {
-                if (_combatEntityTypes.Contents.ContainsKey(entity.ShortPrefabName))
-                    return _combatEntityTypes.Contents[entity.ShortPrefabName];
 
                 if (_combatEntityTypes.Contents.ContainsKey(entity.GetType().Name))
                     return _combatEntityTypes.Contents[entity.GetType().Name];
+
+                if (_combatEntityTypes.Contents.ContainsKey(entity.ShortPrefabName))
+                    return _combatEntityTypes.Contents[entity.ShortPrefabName];
+
             }
 
             if (entity is BaseOven)
@@ -381,6 +383,7 @@ namespace Oxide.Plugins
                 case CombatEntityType.Scientist:
                 case CombatEntityType.Murderer:
                 case CombatEntityType.Scarecrow:
+                case CombatEntityType.ZombieNPC:
                     var name = entity.ToPlayer()?.displayName;
 
                     if (!string.IsNullOrEmpty(name) && name != entity.ToPlayer()?.userID.ToString())
@@ -430,6 +433,7 @@ namespace Oxide.Plugins
             Scarecrow = 16,
             TunnelDweller = 17,
             UnderwaterDweller = 18,
+            ZombieNPC = 19,
             Player = 5,
             Trap = 6,
             Turret = 7,
